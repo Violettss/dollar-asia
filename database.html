@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Viewer - DOLARASIA Money Changer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9e17315b5788b80eb2c0ad026a6ad4759b49024"
+              alt="Dolarasia Logo"
+              class="logo-img"
+            />
+          </a>
+
+          <nav class="nav" id="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="exchange.html" class="nav-link">Exchange</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a href="admin.html" class="nav-link">Admin</a>
+            <a href="database.html" class="nav-link active">Database</a>
+          </nav>
+
+          <div class="user-menu">
+            <div id="user-dropdown" class="user-dropdown">
+              <button class="user-btn" id="user-btn">
+                <svg
+                  class="user-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span id="user-name">Admin</span>
+              </button>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+                <button class="dropdown-item" id="logout-btn">Logout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="dashboard-container">
+        <!-- Page Header -->
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">
+            <svg
+              style="
+                width: 2rem;
+                height: 2rem;
+                margin-right: 0.5rem;
+                color: #3b82f6;
+              "
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            Database Viewer
+          </h1>
+          <p class="dashboard-subtitle">
+            Lihat dan kelola data localStorage (Development Tool)
+          </p>
+        </div>
+
+        <!-- Database Statistics -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background: #3b82f6; color: white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number" id="db-stat-users">0</div>
+              <div class="stat-label">Total Users</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: #7c3aed; color: white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="9" cy="9" r="2"></circle>
+                <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number" id="db-stat-admins">0</div>
+              <div class="stat-label">Admin Users</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: #059669; color: white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number" id="db-stat-transactions">0</div>
+              <div class="stat-label">Total Transactions</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background: #dc2626; color: white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12,6 12,12 16,14"></polyline>
+              </svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-number" id="db-stat-pending">0</div>
+              <div class="stat-label">Pending Transactions</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="database-actions">
+          <button class="btn btn-outline" id="refresh-data-btn">
+            <svg
+              style="width: 1rem; height: 1rem; margin-right: 0.25rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23,4 23,10 17,10"></polyline>
+              <polyline points="1,20 1,14 7,14"></polyline>
+              <path
+                d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"
+              ></path>
+            </svg>
+            Refresh Data
+          </button>
+          <button class="btn btn-outline" id="export-data-btn">
+            <svg
+              style="width: 1rem; height: 1rem; margin-right: 0.25rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7,10 12,15 17,10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export JSON
+          </button>
+          <button class="btn btn-danger" id="clear-data-btn">
+            <svg
+              style="width: 1rem; height: 1rem; margin-right: 0.25rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="3,6 5,6 21,6"></polyline>
+              <path
+                d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"
+              ></path>
+            </svg>
+            Clear Database
+          </button>
+        </div>
+
+        <!-- Current User -->
+        <div class="dashboard-card" id="current-user-section">
+          <div class="card-header">
+            <h3 class="card-title">Current Logged In User</h3>
+          </div>
+          <div id="current-user-info">
+            <!-- Dynamic content -->
+          </div>
+        </div>
+
+        <!-- Data Tables Tabs -->
+        <div class="database-tabs">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="users">
+              Users (<span id="users-count">0</span>)
+            </button>
+            <button class="tab-btn" data-tab="transactions">
+              Transactions (<span id="transactions-count">0</span>)
+            </button>
+            <button class="tab-btn" data-tab="raw">Raw Data</button>
+          </div>
+
+          <div class="tab-content">
+            <!-- Users Tab -->
+            <div class="tab-pane active" id="users-tab">
+              <div class="dashboard-card">
+                <div class="card-header">
+                  <h3 class="card-title">Users Table</h3>
+                  <p class="card-description">All registered users</p>
+                </div>
+                <div id="users-table" class="table-container">
+                  <!-- Dynamic content -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Transactions Tab -->
+            <div class="tab-pane" id="transactions-tab">
+              <div class="dashboard-card">
+                <div class="card-header">
+                  <h3 class="card-title">Transactions Table</h3>
+                  <p class="card-description">
+                    All currency exchange transactions
+                  </p>
+                </div>
+                <div id="transactions-table" class="table-container">
+                  <!-- Dynamic content -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Raw Data Tab -->
+            <div class="tab-pane" id="raw-tab">
+              <div class="raw-data-container">
+                <div class="dashboard-card">
+                  <div class="card-header">
+                    <h3 class="card-title">Raw localStorage Data</h3>
+                    <p class="card-description">
+                      Raw JSON data stored in browser localStorage
+                    </p>
+                  </div>
+                  <div class="raw-data-content">
+                    <div class="raw-data-section">
+                      <h4>dolarasia_users</h4>
+                      <pre id="raw-users-data" class="code-block"></pre>
+                    </div>
+                    <div class="raw-data-section">
+                      <h4>dolarasia_transactions</h4>
+                      <pre id="raw-transactions-data" class="code-block"></pre>
+                    </div>
+                    <div class="raw-data-section">
+                      <h4>dolarasia_user (current session)</h4>
+                      <pre id="raw-current-user-data" class="code-block"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      // Database viewer functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        loadDatabaseData();
+        initializeTabs();
+        initializeActions();
+      });
+
+      function loadDatabaseData() {
+        const users = window.utils.storage.get("dolarasia_users", []);
+        const transactions = window.utils.storage.get(
+          "dolarasia_transactions",
+          [],
+        );
+        const currentUser = window.utils.storage.get("dolarasia_user", null);
+
+        updateStatistics(users, transactions);
+        updateCurrentUserInfo(currentUser);
+        updateUsersTable(users);
+        updateTransactionsTable(transactions);
+        updateRawData(users, transactions, currentUser);
+        updateCounts(users, transactions);
+      }
+
+      function updateStatistics(users, transactions) {
+        const totalUsers = users.length;
+        const adminUsers = users.filter((u) => u.isAdmin).length;
+        const totalTransactions = transactions.length;
+        const pendingTransactions = transactions.filter(
+          (t) => t.status === "pending",
+        ).length;
+
+        document.getElementById("db-stat-users").textContent = totalUsers;
+        document.getElementById("db-stat-admins").textContent = adminUsers;
+        document.getElementById("db-stat-transactions").textContent =
+          totalTransactions;
+        document.getElementById("db-stat-pending").textContent =
+          pendingTransactions;
+      }
+
+      function updateCurrentUserInfo(currentUser) {
+        const container = document.getElementById("current-user-info");
+
+        if (!currentUser) {
+          container.innerHTML = '<p class="no-data">No user logged in</p>';
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="current-user-grid">
+            <div class="user-detail">
+              <label>Name:</label>
+              <span>${currentUser.fullName}</span>
+            </div>
+            <div class="user-detail">
+              <label>Email:</label>
+              <span>${currentUser.email}</span>
+            </div>
+            <div class="user-detail">
+              <label>Role:</label>
+              <span class="user-role ${currentUser.isAdmin ? "admin" : "user"}">
+                ${currentUser.isAdmin ? "Admin" : "User"}
+              </span>
+            </div>
+            <div class="user-detail">
+              <label>ID:</label>
+              <span class="user-id">${currentUser.id}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function updateUsersTable(users) {
+        const container = document.getElementById("users-table");
+
+        if (users.length === 0) {
+          container.innerHTML = '<p class="no-data">No users found</p>';
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="database-table">
+            <div class="table-header">
+              <div class="col-id">ID</div>
+              <div class="col-name">Name</div>
+              <div class="col-email">Email</div>
+              <div class="col-phone">Phone</div>
+              <div class="col-role">Role</div>
+              <div class="col-created">Created</div>
+            </div>
+            ${users
+              .map(
+                (user) => `
+              <div class="table-row">
+                <div class="col-id" data-label="ID">
+                  <span class="user-id">${user.id.slice(0, 8)}...</span>
+                </div>
+                <div class="col-name" data-label="Name">${user.fullName}</div>
+                <div class="col-email" data-label="Email">${user.email}</div>
+                <div class="col-phone" data-label="Phone">${user.phone}</div>
+                <div class="col-role" data-label="Role">
+                  <span class="user-role ${user.isAdmin ? "admin" : "user"}">
+                    ${user.isAdmin ? "Admin" : "User"}
+                  </span>
+                </div>
+                <div class="col-created" data-label="Created">
+                  ${window.utils.formatDate(user.createdAt)}
+                </div>
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      function updateTransactionsTable(transactions) {
+        const container = document.getElementById("transactions-table");
+
+        if (transactions.length === 0) {
+          container.innerHTML = '<p class="no-data">No transactions found</p>';
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="database-table">
+            <div class="table-header">
+              <div class="col-id">ID</div>
+              <div class="col-user-id">User ID</div>
+              <div class="col-type">Type</div>
+              <div class="col-exchange">From → To</div>
+              <div class="col-amount">Amount</div>
+              <div class="col-status">Status</div>
+              <div class="col-created">Created</div>
+            </div>
+            ${transactions
+              .map(
+                (transaction) => `
+              <div class="table-row">
+                <div class="col-id" data-label="ID">
+                  <span class="transaction-id">${transaction.id.slice(0, 8)}...</span>
+                </div>
+                <div class="col-user-id" data-label="User ID">
+                  <span class="user-id">${transaction.userId.slice(0, 8)}...</span>
+                </div>
+                <div class="col-type" data-label="Type">
+                  <span class="transaction-type ${transaction.type}">
+                    ${transaction.type.toUpperCase()}
+                  </span>
+                </div>
+                <div class="col-exchange" data-label="Exchange">
+                  ${transaction.fromCurrency} → ${transaction.toCurrency}
+                </div>
+                <div class="col-amount" data-label="Amount">
+                  ${window.utils.formatNumber(transaction.amount)}
+                </div>
+                <div class="col-status" data-label="Status">
+                  <span class="status-badge status-${transaction.status}">
+                    ${transaction.status}
+                  </span>
+                </div>
+                <div class="col-created" data-label="Created">
+                  ${window.utils.formatDate(transaction.createdAt)}
+                </div>
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      function updateRawData(users, transactions, currentUser) {
+        // Remove passwords from users data
+        const usersWithoutPasswords = users.map(
+          ({ password, ...user }) => user,
+        );
+
+        document.getElementById("raw-users-data").textContent = JSON.stringify(
+          usersWithoutPasswords,
+          null,
+          2,
+        );
+
+        document.getElementById("raw-transactions-data").textContent =
+          JSON.stringify(transactions, null, 2);
+
+        document.getElementById("raw-current-user-data").textContent =
+          currentUser ? JSON.stringify(currentUser, null, 2) : "null";
+      }
+
+      function updateCounts(users, transactions) {
+        document.getElementById("users-count").textContent = users.length;
+        document.getElementById("transactions-count").textContent =
+          transactions.length;
+      }
+
+      function initializeTabs() {
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabPanes = document.querySelectorAll(".tab-pane");
+
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const tabId = this.dataset.tab;
+
+            // Remove active class from all tabs and panes
+            tabBtns.forEach((b) => b.classList.remove("active"));
+            tabPanes.forEach((p) => p.classList.remove("active"));
+
+            // Add active class to clicked tab and corresponding pane
+            this.classList.add("active");
+            document.getElementById(`${tabId}-tab`).classList.add("active");
+          });
+        });
+      }
+
+      function initializeActions() {
+        // Refresh data
+        document
+          .getElementById("refresh-data-btn")
+          .addEventListener("click", function () {
+            loadDatabaseData();
+            showNotification("Data refreshed successfully", "success");
+          });
+
+        // Export data
+        document
+          .getElementById("export-data-btn")
+          .addEventListener("click", function () {
+            const users = window.utils.storage.get("dolarasia_users", []);
+            const transactions = window.utils.storage.get(
+              "dolarasia_transactions",
+              [],
+            );
+            const currentUser = window.utils.storage.get(
+              "dolarasia_user",
+              null,
+            );
+
+            const exportData = {
+              users: users.map(({ password, ...user }) => user), // Remove passwords
+              transactions,
+              currentUser,
+              exportedAt: new Date().toISOString(),
+              version: "1.0",
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+              type: "application/json",
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `dolarasia-database-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showNotification("Database exported successfully", "success");
+          });
+
+        // Clear database
+        document
+          .getElementById("clear-data-btn")
+          .addEventListener("click", function () {
+            if (
+              confirm(
+                "Are you sure? This will delete ALL data! This action cannot be undone.",
+              )
+            ) {
+              window.utils.storage.remove("dolarasia_users");
+              window.utils.storage.remove("dolarasia_transactions");
+              window.utils.storage.remove("dolarasia_user");
+
+              // Reinitialize admin user
+              window.authManager.initializeAdminUser();
+
+              loadDatabaseData();
+              showNotification("Database cleared successfully", "success");
+
+              // Redirect to login since user session is cleared
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 2000);
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

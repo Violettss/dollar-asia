@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - DOLARASIA Money Changer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9e17315b5788b80eb2c0ad026a6ad4759b49024"
+              alt="Dolarasia Logo"
+              class="logo-img"
+            />
+          </a>
+
+          <nav class="nav" id="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="dashboard.html" class="nav-link active">Dashboard</a>
+            <a href="exchange.html" class="nav-link">Exchange</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a
+              href="admin.html"
+              class="nav-link"
+              id="nav-admin"
+              style="display: none"
+              >Admin</a
+            >
+            <a
+              href="database.html"
+              class="nav-link"
+              id="nav-database"
+              style="display: none"
+              >Database</a
+            >
+          </nav>
+
+          <div class="user-menu">
+            <div id="user-dropdown" class="user-dropdown">
+              <button class="user-btn" id="user-btn">
+                <svg
+                  class="user-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span id="user-name">User</span>
+              </button>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+                <button class="dropdown-item" id="logout-btn">Logout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">
+            Selamat datang, <span id="welcome-name">User</span>
+          </h1>
+          <p class="dashboard-subtitle">
+            Monitor kurs mata uang dan kelola transaksi currency exchange Anda
+          </p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <div class="quick-action-card">
+            <svg
+              class="action-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M7 21l3-9 3 9M5 7l6-6 6 6M10 18h4"></path>
+            </svg>
+            <h3 class="action-title">Tukar Mata Uang</h3>
+            <p class="action-description">Mulai transaksi penukaran baru</p>
+            <a href="exchange.html" class="btn btn-primary">Mulai Exchange</a>
+          </div>
+
+          <div class="quick-action-card">
+            <svg
+              class="action-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 3v18h18"></path>
+              <path d="M18 17V9"></path>
+              <path d="M13 17V5"></path>
+              <path d="M8 17v-3"></path>
+            </svg>
+            <h3 class="action-title">Riwayat Transaksi</h3>
+            <p class="action-description">Lihat semua transaksi Anda</p>
+            <a href="history.html" class="btn btn-outline">Lihat Riwayat</a>
+          </div>
+
+          <div class="quick-action-card">
+            <svg
+              class="action-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v6m0 6v6"></path>
+              <path d="M1 12h6m6 0h6"></path>
+            </svg>
+            <h3 class="action-title">Total Transaksi</h3>
+            <p class="action-description" id="total-transactions">0 selesai</p>
+            <div class="btn btn-outline" style="cursor: default; opacity: 0.7">
+              Info
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Exchange Rates -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg
+                  class="card-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                Kurs Mata Uang Live
+              </h3>
+              <span class="live-badge">Live</span>
+            </div>
+            <div id="exchange-rates" class="loading">
+              <div class="spinner"></div>
+              <p>Memuat kurs mata uang...</p>
+            </div>
+          </div>
+
+          <!-- Recent Transactions -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg
+                  class="card-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 3v18h18"></path>
+                  <path d="M18 17V9"></path>
+                  <path d="M13 17V5"></path>
+                  <path d="M8 17v-3"></path>
+                </svg>
+                Transaksi Terbaru
+              </h3>
+            </div>
+            <div id="recent-transactions" class="loading">
+              <div class="spinner"></div>
+              <p>Memuat transaksi...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market Updates -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg
+                class="card-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+              Update Pasar
+            </h3>
+          </div>
+          <div class="market-updates">
+            <div class="update-item">
+              <div class="update-time">5 menit yang lalu</div>
+              <div class="update-text">Kurs USD menguat 0.15% terhadap IDR</div>
+            </div>
+            <div class="update-item">
+              <div class="update-time">1 jam yang lalu</div>
+              <div class="update-text">EUR stabil di kisaran 17.000-17.200</div>
+            </div>
+            <div class="update-item">
+              <div class="update-time">3 jam yang lalu</div>
+              <div class="update-text">
+                Volatilitas rendah untuk mata uang Asia
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Getting Started Guide (for new users) -->
+        <div class="dashboard-card" id="getting-started" style="display: none">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg
+                class="card-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6"></path>
+                <path d="M1 12h6m6 0h6"></path>
+              </svg>
+              Panduan Memulai
+            </h3>
+          </div>
+          <div class="getting-started-content">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Pilih Mata Uang</h4>
+                <p>
+                  Pergi ke halaman Exchange dan pilih mata uang yang ingin
+                  ditukar
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Hitung Jumlah</h4>
+                <p>
+                  Masukkan jumlah yang ingin ditukar dan lihat kalkulasi
+                  real-time
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Konfirmasi Transaksi</h4>
+                <p>Submit transaksi dan tunggu verifikasi dari admin</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      // Dashboard specific functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const user = window.authManager.getCurrentUser();
+        if (user) {
+          document.getElementById("welcome-name").textContent = user.fullName;
+
+          // Check if user is new (no transactions)
+          const transactions = window.utils.storage.get(
+            "dolarasia_transactions",
+            [],
+          );
+          const userTransactions = transactions.filter(
+            (t) => t.userId === user.id,
+          );
+
+          if (userTransactions.length === 0) {
+            document.getElementById("getting-started").style.display = "block";
+          }
+
+          // Update total transactions count
+          document.getElementById("total-transactions").textContent =
+            `${userTransactions.filter((t) => t.status === "completed").length} selesai`;
+        }
+      });
+    </script>
+  </body>
+</html>

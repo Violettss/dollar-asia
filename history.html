@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tukar Mata Uang - DOLARASIA Money Changer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="index.html" class="logo">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9e17315b5788b80eb2c0ad026a6ad4759b49024"
+              alt="Dolarasia Logo"
+              class="logo-img"
+            />
+          </a>
+
+          <nav class="nav" id="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="exchange.html" class="nav-link active">Exchange</a>
+            <a href="history.html" class="nav-link">History</a>
+            <a
+              href="admin.html"
+              class="nav-link"
+              id="nav-admin"
+              style="display: none"
+              >Admin</a
+            >
+            <a
+              href="database.html"
+              class="nav-link"
+              id="nav-database"
+              style="display: none"
+              >Database</a
+            >
+          </nav>
+
+          <div class="user-menu">
+            <div id="user-dropdown" class="user-dropdown">
+              <button class="user-btn" id="user-btn">
+                <svg
+                  class="user-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span id="user-name">User</span>
+              </button>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="dashboard.html" class="dropdown-item">Dashboard</a>
+                <button class="dropdown-item" id="logout-btn">Logout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="dashboard-container">
+        <!-- Page Header -->
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">
+            <svg
+              style="width: 2rem; height: 2rem; margin-right: 0.5rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M7 21l3-9 3 9M5 7l6-6 6 6M10 18h4"></path>
+            </svg>
+            Tukar Mata Uang
+          </h1>
+          <p class="dashboard-subtitle">
+            Tukar mata uang dengan kurs kompetitif dan proses yang mudah
+          </p>
+        </div>
+
+        <!-- Exchange Form & Calculator -->
+        <div class="dashboard-grid">
+          <!-- Exchange Form -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">Detail Transaksi</h3>
+            </div>
+
+            <form class="exchange-form" id="exchange-form">
+              <!-- Transaction Type -->
+              <div class="form-group">
+                <label class="form-label">Tipe Transaksi</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="buy"
+                      class="form-radio"
+                      checked
+                    />
+                    <span class="radio-text">Beli Mata Uang Asing</span>
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="sell"
+                      class="form-radio"
+                    />
+                    <span class="radio-text">Jual Mata Uang Asing</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Currency Selection -->
+              <div class="form-group">
+                <label for="currency-select" class="form-label"
+                  >Mata Uang</label
+                >
+                <select
+                  id="currency-select"
+                  name="currency"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Pilih mata uang</option>
+                </select>
+              </div>
+
+              <!-- Amount Input -->
+              <div class="form-group">
+                <label for="amount-input" class="form-label">
+                  Jumlah (<span id="amount-currency">IDR</span>)
+                </label>
+                <input
+                  type="number"
+                  id="amount-input"
+                  name="amount"
+                  class="form-input"
+                  step="0.01"
+                  min="1"
+                  required
+                />
+              </div>
+
+              <!-- Payment Method -->
+              <div class="form-group">
+                <label for="payment-method" class="form-label"
+                  >Metode Pembayaran</label
+                >
+                <select
+                  id="payment-method"
+                  name="paymentMethod"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Pilih metode pembayaran</option>
+                  <option value="bank_transfer">Transfer Bank</option>
+                  <option value="cash">Tunai (Kunjungi Kantor)</option>
+                  <option value="e_wallet">E-Wallet</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary btn-full"
+                id="submit-btn"
+              >
+                Buat Transaksi
+              </button>
+            </form>
+          </div>
+
+          <!-- Exchange Calculator -->
+          <div class="exchange-calculator">
+            <div class="calculator-header">
+              <h3 class="calculator-title">
+                <svg
+                  class="card-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                  <path d="M9 9h6v6H9z"></path>
+                  <path d="M9 1v6"></path>
+                  <path d="M15 1v6"></path>
+                  <path d="M9 15v6"></path>
+                  <path d="M15 15v6"></path>
+                  <path d="M1 9h6"></path>
+                  <path d="M17 9h6"></path>
+                  <path d="M1 15h6"></path>
+                  <path d="M17 15h6"></path>
+                </svg>
+                Kalkulator Exchange
+              </h3>
+              <p>Perhitungan real-time berdasarkan kurs saat ini</p>
+            </div>
+
+            <div id="currency-details" class="currency-details">
+              <p class="select-currency-message">
+                Pilih mata uang untuk melihat kurs
+              </p>
+            </div>
+
+            <div id="calculated-result" class="calculation-result hidden">
+              <!-- Dynamic calculation results -->
+            </div>
+
+            <div class="payment-info">
+              <h4>Instruksi Pembayaran:</h4>
+              <ul>
+                <li>Lengkapi form transaksi di sebelah kiri</li>
+                <li>Lakukan pembayaran dalam 24 jam</li>
+                <li>Upload bukti pembayaran untuk verifikasi</li>
+                <li>Dana akan diproses dalam 1-2 hari kerja</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Exchange Rates -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg
+                class="card-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+              Kurs Hari Ini
+            </h3>
+            <span class="live-badge">Live</span>
+          </div>
+          <div id="exchange-rates" class="loading">
+            <div class="spinner"></div>
+            <p>Memuat kurs mata uang...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Transaction Success Modal -->
+    <div id="success-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Transaksi Berhasil Dibuat!</h3>
+        </div>
+        <div class="modal-body">
+          <div class="success-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              style="width: 64px; height: 64px; color: #00b906"
+            >
+              <path d="M9 12l2 2 4-4"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <p>
+            Transaksi Anda telah berhasil dibuat. Silakan lakukan pembayaran dan
+            upload bukti untuk verifikasi.
+          </p>
+          <div class="modal-actions">
+            <a href="history.html" class="btn btn-primary">Lihat Riwayat</a>
+            <button class="btn btn-outline" onclick="closeSuccessModal()">
+              Buat Transaksi Lagi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/exchange.js"></script>
+  </body>
+</html>
